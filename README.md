@@ -1,6 +1,6 @@
 # NFC Card Reader
 
-Python scripts for reading NFC cards and EMV credit/debit cards using the ACR1252 reader.
+Python scripts for reading and writing NFC cards and EMV credit/debit cards using the ACR1252 reader.
 
 ## Features
 
@@ -14,6 +14,12 @@ Python scripts for reading NFC cards and EMV credit/debit cards using the ACR125
   - Reads expiration date
   - Displays cardholder name (if available)
   - Shows application information
+
+- **write_nfc_url_pcsc.py** - Write URLs to NFC tags
+  - Creates NDEF-formatted URL records
+  - Continuous operation mode
+  - Compatible with NTAG213/215/216 tags
+  - URLs readable by smartphones
 
 ## Requirements
 
@@ -40,6 +46,13 @@ python3 emv_reader.py
 ```
 
 **Important**: When reading credit cards, hold the card steady on the reader for 3-5 seconds.
+
+### Writing URLs to NFC Tags
+```bash
+python3 write_nfc_url_pcsc.py
+```
+
+Edit the `url` variable in the script to customize the URL. The script will continuously wait for tags and write to each one detected.
 
 ## Security Notes
 
