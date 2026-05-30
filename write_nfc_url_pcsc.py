@@ -181,7 +181,7 @@ class NFCCardObserver(CardObserver):
             pass  # Card removed, ignore
 
 def main():
-    url = "https://tacodogs.org/cardy_mc_cardface"
+    url = "http://cardy-mc-cardface.tacodogs.org"
 
     print("NFC Tag Writer - Continuous Mode")
     print("=" * 50)
