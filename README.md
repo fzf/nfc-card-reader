@@ -48,11 +48,23 @@ python3 emv_reader.py
 **Important**: When reading credit cards, hold the card steady on the reader for 3-5 seconds.
 
 ### Writing URLs to NFC Tags
+
+**Using default URL (rickroll):**
 ```bash
 python3 write_nfc_url_pcsc.py
 ```
 
-Edit the `url` variable in the script to customize the URL. The script will continuously wait for tags and write to each one detected.
+**Using command line argument:**
+```bash
+python3 write_nfc_url_pcsc.py https://example.com
+```
+
+**Using environment variable:**
+```bash
+NFC_URL=https://example.com python3 write_nfc_url_pcsc.py
+```
+
+The script will continuously wait for tags and write to each one detected.
 
 ## Security Notes
 

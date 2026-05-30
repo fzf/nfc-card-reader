@@ -3,6 +3,13 @@
 Script to write a URL to an NFC tag using pyscard (PCSC).
 This will write the URL in NDEF format so it can be read by smartphones.
 Supports continuous operation - keeps running and writes to each new card detected.
+
+Usage:
+    python3 write_nfc_url_pcsc.py [URL]
+    python3 write_nfc_url_pcsc.py https://example.com
+
+    Or set via environment variable:
+    NFC_URL=https://example.com python3 write_nfc_url_pcsc.py
 """
 
 from smartcard.System import readers
@@ -11,6 +18,7 @@ from smartcard.CardMonitoring import CardMonitor, CardObserver
 from smartcard.Exceptions import NoCardException
 import sys
 import time
+import os
 
 def create_ndef_url_message(url):
     """
@@ -181,7 +189,14 @@ class NFCCardObserver(CardObserver):
             pass  # Card removed, ignore
 
 def main():
-    url = "https://cardy-mc-cardface.tacodogs.org"
+    # Get URL from command line argument, environment variable, or use default
+    if len(sys.argv) > 1:
+        url = sys.argv[1]
+    elif os.environ.get('NFC_URL'):
+        url = os.environ.get('NFC_URL')
+    else:
+        # Default URL
+        url = "https://cardy-mc-cardface.tacodogs.org"
 
     print("NFC Tag Writer - Continuous Mode")
     print("=" * 50)
